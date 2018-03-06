@@ -1,0 +1,85 @@
+<div class="wrapper">
+<h3 class="welcome">Welcome Back {{user.firstName}}!</h3>
+<div class="spacer"></div>
+<div class="submitField">
+<form (ngSubmit)="newReimb()">
+  <input type="number" class="form-control" name="amount" [(ngModel)]="submitTicket.amount" placeholder="Reimbursement Amount">
+  <input type="text" class="form-control" name="discription" [(ngModel)]="submitTicket.description" placeholder="Reimbursement Discription">
+  <label class="mr-sm-2" for="inlineFormCustomSelect">Reimbursment Type</label>
+  <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect" name = "type"[(ngModel)]= "submitTicket.typeID">
+    <option selected>Choose...</option>
+    <option value="1">Food</option>
+    <option value="2">Travel</option>
+    <option value="3">Lodging</option>
+    <option value="4">Other</option>
+  </select>
+  <button type="submit" class="btn btn-primary" >Submit Reimbursement</button>
+</form><!-- /form -->
+</div>
+
+<div class="spacer"></div>
+
+<br>
+
+<div class="buttons">
+<button class="btn btn-primary" (click)="statusID=0">All</button>
+<button class="btn btn-warning" (click)="statusID=1">Pending</button>
+<button class="btn btn-success" (click)="statusID=2">Approved</button>
+<button class="btn btn-danger" (click)="statusID=3">Denied</button>
+</div>
+
+<div id="logout">
+    <button class="btn btn-danger" (click)="logOut()">Logout</button>
+</div>
+
+<hr>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Submitted</th>
+      <th scope="col">Resolved</th>
+      <th scope="col">Description</th>
+      <th scope="col">Author</th>
+      <th scope="col">Resolver</th>
+      <th scope="col">Status</th>
+      <th scope="col">Type</th>
+      <th scope="col">Approval</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ticket of tickets|statusFilter:statusID">
+      <th scope="row">{{ticket.id}}</th>
+      <td>{{ticket.amount | currency:'USD':'symbol':'1.2-2'}}</td>
+      <td>{{ticket.submitted | date:'fullDate'}}</td>
+      <td>{{ticket.resolved | date: 'fullDate'}}</td>
+      <td>{{ticket.description}}</td>
+      <td>{{ticket.author}}</td>
+      <td>{{ticket.resolver}}</td>
+      <td *ngIf="ticket.statusID==1">Pending</td>
+      <td *ngIf="ticket.statusID==2">Approved</td>
+      <td *ngIf="ticket.statusID==3">Denied</td>
+      <td *ngIf="ticket.typeID==1">Lodging</td>
+      <td *ngIf="ticket.typeID==2">Travel</td>
+      <td *ngIf="ticket.typeID==3">Food</td>
+      <td *ngIf="ticket.typeID==4">Other</td>
+      <td *ngIf="user.id != ticket.author else no"><button class="btn btn-primary" type="submit" (click)="update(2, ticket.id)" >Approve</button></td>
+      <ng-template #no>
+        <td>Unavailable</td>
+      </ng-template>
+      <td *ngIf="user.id != ticket.author else ok"><button class="btn btn-primary" type="submit" (click)="update(3, ticket.id)">Deny</button></td>
+      <ng-template #ok>
+          <td></td>
+        </ng-template>
+    </tr>
+  </tbody>
+ </table>
+
+</div>
+
+<!-- <div *ngFor="let t of (tickets | statusID:statusFilter)">
+  <app-ticket [ticket]="t"></app-ticket>
+</div> -->

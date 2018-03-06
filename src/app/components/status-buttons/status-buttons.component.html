@@ -1,0 +1,23 @@
+<div class="buttons">
+<div class="btn-group" role="group">
+  <button type="button" class="btn btn-secondary btn-lg" value="all" routerLink="/status-buttons/all-table">All</button>
+  <button type="button" class="btn btn-secondary btn-lg" value="pending" routerLink="/status-buttons/pending-table">Pending</button>
+  <button type="button" class="btn btn-secondary btn-lg" value="approved" routerLink="/status-buttons/approved-table">Approved</button>
+  <button type="button" class="btn btn-secondary btn-lg" value="denied" routerLink="/status-buttons/denied-table">Denied</button>
+</div>
+</div>
+
+<!-- <mat-button-toggle-group #group="matButtonToggleGroup">
+  <mat-button-toggle value="pending">
+    Pending
+  </mat-button-toggle>
+  <mat-button-toggle value="approved">
+    Approved
+  </mat-button-toggle>
+  <mat-button-toggle value="denied">
+    Denied
+  </mat-button-toggle>
+</mat-button-toggle-group>
+<div class="example-selected-value">Selected value: {{group.value}}</div> -->
+
+<router-outlet></router-outlet>

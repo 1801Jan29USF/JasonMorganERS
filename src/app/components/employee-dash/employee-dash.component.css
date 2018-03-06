@@ -1,0 +1,26 @@
+.wrapper {
+    background-color: #cde3ff;
+    border: 1px solid gray;
+    min-height: 100%;
+    width: 90%;
+    margin: 0 auto 0;
+    padding: 0;
+}
+
+.submitField {
+    width: 50%;
+    text-align: center;
+    margin: 0 auto 0;
+}
+
+.spacer{
+    height: 50px;
+}
+
+.buttons {
+    text-align: center;
+}
+
+.welcome {
+    text-align: center;
+}

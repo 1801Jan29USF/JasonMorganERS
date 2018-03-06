@@ -1,0 +1,13 @@
+.jumbotron {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #cde3ff;
+}
+
+.display-4 {
+    text-align: center;
+}
+
+.lead{
+    text-align: center;
+}
